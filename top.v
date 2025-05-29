@@ -12,7 +12,7 @@ module top
    // Create 100 cycles of example stimulus
    reg [31:0] count_c;
    always_ff @ (posedge clk) begin
-      //$display("[%0t] clk=%b reset=%b", $time, clk, reset);
+      $display("[%0t] clk=%b reset=%b", $time, clk, reset);
       if (reset) begin
 	 count_c <= 0;
       end
