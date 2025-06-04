@@ -29,13 +29,9 @@ int main(int argc, char** argv, char** env) {
 
     Vtop* top = new Vtop;  // Or use a const unique_ptr, or the VL_UNIQUE_PTR wrapper
 
-    top->clk = 0;
     while (!Verilated::gotFinish()) {
         ++main_time;
-        top->clk = !top->clk;
-        top->reset = (main_time < 10) ? 1 : 0;
         if (main_time < 5) {
-            top->reset = 0;
             // Zero coverage if still early in reset, otherwise toggles there may
             // falsely indicate a signal is covered
             VerilatedCov::zero();

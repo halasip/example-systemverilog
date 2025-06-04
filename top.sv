@@ -5,38 +5,41 @@
 // SPDX-License-Identifier: CC0-1.0
 // ======================================================================
 `timescale 1ns/10ps
-module top
-  (input logic clk,
-   input logic reset);
+module top();
 
-   reg fast_clk;  // Fast clock for simulation
+   logic clk;
+   logic reset;
+   logic fast_clk;  // Fast clock for simulation
    // Create a clock
    initial begin
       $display("Starting simulation...");
       fast_clk = 0;
+      clk = 0;
+      reset = 1;  // Start with reset high
+      #2ns reset = 0;
+      #30ns reset = 1; 
    end
 
    always #5ns fast_clk = ~fast_clk;  // Toggle clock every 5 time units
+   always #50ns clk = ~clk;  // Toggle clock every 5 time units
 
    
       // Create 100 cycles of example stimulus
-   reg [31:0] count_byte;
-   always_ff @ (posedge clk or posedge reset) begin
+   logic [31:0] count_byte;
+   always_ff @ (posedge clk or negedge reset) begin
       $display("[%0t] clk=%b reset=%b", $realtime, clk, reset);
-      if (reset) begin
+      if (!reset) begin
 	      count_byte <= 0;
       end else begin
 	      count_byte <= count_byte + 1;
-      if (count_byte >= 9999) begin
-      end
       end
    end
 
    // Create 100 cycles of example stimulus
-   reg [31:0] count_c;
-   always_ff @ (posedge fast_clk or posedge reset) begin
+   logic [31:0] count_c;
+   always_ff @ (posedge fast_clk or negedge reset) begin
       $display("[%0t] fast_clk=%b reset=%b", $realtime, fast_clk, reset);
-      if (reset) begin
+      if (!reset) begin
 	      count_c <= 0;
       end
       else begin
