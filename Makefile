@@ -44,9 +44,9 @@ VERILATOR_FLAGS += -cc --exe
 # Optimize
 VERILATOR_FLAGS += --x-assign 0
 # Warn abount lint issues; may not want this on less solid designs
-VERILATOR_FLAGS += -Wall
+# VERILATOR_FLAGS += -Wall
 # Make waveforms
-#VERILATOR_FLAGS += --trace
+VERILATOR_FLAGS += --trace-fst
 # Check SystemVerilog assertions
 VERILATOR_FLAGS += --assert
 # Generate coverage analysis

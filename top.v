@@ -46,4 +46,9 @@ module top
       end
    end
 
+   initial begin
+      $dumpfile("top.fst");
+      $dumpvars();
+   end
+
 endmodule
