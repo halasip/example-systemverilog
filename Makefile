@@ -59,7 +59,7 @@ VERILATOR_FLAGS += --build -j
 #VERILATOR_FLAGS += --gdbbt
 
 # Input files for Verilator
-VERILATOR_INPUT = -f input.vc top.v sim_main.cpp
+VERILATOR_INPUT = -f input.vc top.sv sim_main.cpp
 
 ######################################################################
 
@@ -75,15 +75,15 @@ VERILATOR_COV_FLAGS += logs/coverage.dat
 ######################################################################
 default: run
 
-run:
+
+verilate: clean
 	@echo
 	@echo "-- Verilator coverage example"
-
-	@echo
 	@echo "-- VERILATE ----------------"
 	$(VERILATOR) --version
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
 
+run: verilate
 	@echo
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
@@ -97,6 +97,17 @@ run:
 
 	@echo
 	@echo "-- DONE --------------------"
+
+rung: run vwave
+
+vwave:
+	@echo "-- WAVE --------------------"
+	@gtkwave top.fst &
+
+rundbg:
+	$(MAKE) VERILATOR_FLAGS="$(VERILATOR_FLAGS) -Wall"
+	$(MAKE) verilate
+	$(MAKE) run
 
 
 ######################################################################

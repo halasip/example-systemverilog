@@ -1,2 +1,6 @@
 // This file typically lists flags required by a large project, e.g. include directories
 +libext+.v+.sv+.vh+.svh -y .
+
+-f rtl.f
+-f testbench.f
+--timing

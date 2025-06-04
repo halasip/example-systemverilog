@@ -35,6 +35,7 @@ int main(int argc, char** argv, char** env) {
         top->clk = !top->clk;
         top->reset = (main_time < 10) ? 1 : 0;
         if (main_time < 5) {
+            top->reset = 0;
             // Zero coverage if still early in reset, otherwise toggles there may
             // falsely indicate a signal is covered
             VerilatedCov::zero();
