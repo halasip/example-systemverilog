@@ -7,7 +7,6 @@
 +incdir+tb
 -f tb/testbench.f
 
---timing
 -Wno-TIMESCALEMOD
 -Wno-WIDTHTRUNC
 --top top

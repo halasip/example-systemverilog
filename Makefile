@@ -81,7 +81,7 @@ verilate: clean
 	@echo "-- Verilator coverage example"
 	@echo "-- VERILATE ----------------"
 	$(VERILATOR) --version
-	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
+	$(VERILATOR) $(VERILATOR_FLAGS) --timing $(VERILATOR_INPUT)
 
 run: verilate
 	@echo
