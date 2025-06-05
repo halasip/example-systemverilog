@@ -59,7 +59,7 @@ VERILATOR_FLAGS += --build -j
 #VERILATOR_FLAGS += --gdbbt
 
 # Input files for Verilator
-VERILATOR_INPUT = -f input.vc top.sv sim_main.cpp
+VERILATOR_INPUT = -f input.vc sim_main.cpp
 
 ######################################################################
 

@@ -1,3 +1,7 @@
+# Exclude waveforms
+*.vcd
+*.fst
+
 # Compiled Object files
 *.slo
 *.lo

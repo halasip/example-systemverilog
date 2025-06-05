@@ -1,6 +1,13 @@
 // This file typically lists flags required by a large project, e.g. include directories
 +libext+.v+.sv+.vh+.svh -y .
 
--f rtl.f
--f testbench.f
++incdir+rtl
+-f rtl/rtl.f
+
++incdir+tb
+-f tb/testbench.f
+
 --timing
+-Wno-TIMESCALEMOD
+-Wno-WIDTHTRUNC
+--top top
